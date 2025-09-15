@@ -1,0 +1,48 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const teamForm = document.getElementById("teamForm");
+
+  teamForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    // Get form values and structure data
+    const formData = {
+      teamName: document.getElementById("teamName").value,
+      difficulty: document.getElementById("difficultyLevel").value,
+      pointsDeducted: document.getElementById("pointsDeducted").value
+    };
+
+    // IMPORTANT: Replace this placeholder with your actual REST API URL
+    //const apiUrl = "https://localhost:8080/question/get";
+
+    console.log("Sending data to API...", formData);
+
+    try {
+      const response = await fetch("/mysteryQuestion/get", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Success:", result);
+
+      // Save both backend response + formData in localStorage
+      localStorage.setItem("mysteryData", JSON.stringify({
+        ...result,
+        pointsDeducted: formData.pointsDeducted
+      }));
+
+      //const result = await response.json();
+      //console.log("Success:", result);
+      window.location.href = "/mysteryQuestion/get";
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  });
+});
