@@ -30,7 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("points").textContent = mysteryData.pointsDeducted;
 
     // Update question text
-    document.getElementById("questionText").textContent = mysteryData.mysteryQuestion;
+    document.getElementById("questionText").textContent =
+      mysteryData.mysteryQuestion;
   } else {
     console.error("No mystery data found in localStorage!");
   }
@@ -81,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- API Simulation/Call ---
   const verifyCodeWithAPI = async (code) => {
     // This part simulates a network request.
-    console.log(`Simulating API call with code: ${code}`);
     return new Promise((resolve) => {
       setTimeout(() => {
         // We now check for a `success` property in the response
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
       closeModal();
       setTimeout(() => {
         openModal(successModal);
-        setTimeout(()=>{
+        setTimeout(() => {
           window.location.href = "login-mystery.html";
         }, 1000);
       }, 100);
@@ -158,12 +158,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  document.getElementById("glow-button-quit").addEventListener("click", () => {
-    setTimeout(() => {
-      openOverlay(exitOverlay);
-      setTimeout(()=>{
-        window.location.href = "login-mystery.html";
-      }, 1000);
-    }, 100);
-  });
+  // document.getElementById("glow-button-quit").addEventListener("click", () => {
+  //   setTimeout(() => {
+  //     openOverlay(exitOverlay);
+  //     setTimeout(()=>{
+  //       window.location.href = "login-mystery.html";
+  //     }, 1000);
+  //   }, 100);
+  // });
 });
