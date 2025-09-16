@@ -7,7 +7,7 @@ html {
 body {
   height: 100%;
   margin: 0;
-  font-family: "Montserrat", serif;
+  font-family: 'Russo One', sans-serif;
   color: #c0d0ff;
   background: radial-gradient(3px 3px at 20px 30px, #eee, rgba(0, 0, 0, 0)),
     radial-gradient(3px 3px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
@@ -23,7 +23,6 @@ body {
 }
 
 /*Background Animation */
-/*Defines how the starry background scrolls diagonally*/
 @keyframes move-stars {
   from {
     background-position: 0 0;
@@ -48,10 +47,10 @@ body {
   background-color: rgba(10, 25, 47, 0.85);
   border: 1px solid rgba(0, 170, 255, 0.7);
   border-radius: 20px;
-  padding: 3rem; /* increased padding */
+  padding: 3rem;
   width: 100%;
-  max-width: 800px; /* was 450px, now bigger for desktop */
-  min-height: 600px; /* new: makes the card taller */
+  max-width: 800px;
+  min-height: 600px;
   backdrop-filter: blur(8px);
   box-shadow: 0 0 25px rgba(0, 170, 255, 0.4),
     inset 0 0 12px rgba(0, 170, 255, 0.4);
@@ -65,73 +64,28 @@ body {
 
 .card-title {
   text-align: center;
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  color: #e0eaff;
-  text-shadow: 0 0 6px rgba(0, 213, 255, 0.5);
-}
-
-/*Form Fields*/
-/* Groups each input + label */
-.form-group {
-  margin-bottom: 1.5rem;
-  position: relative;
-}
-/* Labels appear above inputs with spacing */
-.form-group label {
-  display: block;
+  font-size: 2.5rem;
+  font-weight: 400; /* Russo One is bold by default */
   margin-bottom: 0.5rem;
+  color: #e0eaff;
+  letter-spacing: 2px;
+}
+
+.card-subtitle {
+  text-align: center;
   font-size: 1rem;
-  letter-spacing: 1px;
-}
-/* Inputs look transparent with glowing underline instead of full box.*/
-.form-group input {
-  width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(0, 170, 255, 0.4); /* underline effect */
-  padding: 0.5rem 0;
-  font-size: 1.1rem;
-  color: #ffffff;
-  font-family: "Cinzel", serif;
-  transition: all 0.3s ease;
-}
-/* When focused: underline glows cyan + slight shadow */
-.form-group input:focus {
-  outline: none;
-  border-bottom-color: rgba(0, 213, 255, 0.8);
-  box-shadow: 0 4px 10px -8px rgba(0, 213, 255, 0.5);
+  margin-bottom: 2rem;
+  color: #9bbcff;
+  font-style: italic;
 }
 
-/*Button Styling*/
-/*Creates a pill-shaped glowing gradient button */
-.glow-button:hover,
-.glow-button:focus {
-  transform: scale(1.03);
-  box-shadow: 0 0 12px rgba(0, 195, 255, 0.9);
-  color: #fff;
-  outline: none;
-}
-
-/*Remove Number Input Arrows */
-/*Removes the up/down arrows on <input type="number"> */
-/* Chrome, Safari, Edge, Opera */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* it’s a leaderboard, a table-like structure is best.*/
-/* Leaderboard Header Row */
 /* Leaderboard Header */
 .leaderboard-header {
   display: flex;
   justify-content: space-between;
-  padding: 0.75rem 0;
+  padding: 0.75rem 0.5rem;
   border-bottom: 2px solid rgba(0, 213, 255, 0.5);
-  font-weight: 700;
+  font-weight: 400;
   color: #00d5ff;
   margin-bottom: 1rem;
   font-size: 1.1rem;
@@ -140,11 +94,13 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Leaderboard Rows */
 .leaderboard-row {
   display: flex;
-  justify-content: space-between;
-  padding: 0.75rem 0;
+  align-items: center;
+  padding: 0.8rem 0.5rem;
   border-bottom: 1px solid rgba(0, 213, 255, 0.2);
   font-size: 1.1rem;
   transition: all 0.3s ease;
+  border-radius: 5px;
+  margin-bottom: 5px;
 }
 
 .leaderboard-row:hover {
@@ -157,194 +113,159 @@ input[type="number"]::-webkit-inner-spin-button {
 .serial-col {
   width: 60px;
   text-align: center;
-  font-weight: 600;
 }
-
 .team-col {
   flex: 1;
   padding-left: 10px;
 }
-
 .points-col {
   width: 100px;
   text-align: right;
-  font-family: "Cinzel", serif;
   color: #e0eaff;
 }
+.actions-col {
+    width: 80px;
+    text-align: center;
+}
 
-/* 🥇🥈🥉 Highlight Top 3 */
+/* Highlight Top 3 */
 .leaderboard-row.first {
-  background: rgba(255, 215, 0, 0.15);
-  color: gold;
-  font-weight: 700;
-  text-shadow: 0 0 8px gold;
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.25), rgba(255, 165, 0, 0.1));
+  border-left: 4px solid #FFD700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  color: #FFD700;
 }
-
 .leaderboard-row.second {
-  background: rgba(192, 192, 192, 0.15);
-  color: silver;
-  font-weight: 600;
-  text-shadow: 0 0 8px silver;
+  background: linear-gradient(90deg, rgba(192, 192, 192, 0.25), rgba(176, 224, 230, 0.1));
+  border-left: 4px solid #C0C0C0;
+  box-shadow: 0 0 15px rgba(192, 192, 192, 0.4);
+  color: #C0C0C0;
 }
-
 .leaderboard-row.third {
-  background: rgba(205, 127, 50, 0.15);
-  color: #cd7f32;
-  font-weight: 600;
-  text-shadow: 0 0 8px #cd7f32;
+  background: linear-gradient(90deg, rgba(205, 127, 50, 0.25), rgba(139, 69, 19, 0.1));
+  border-left: 4px solid #CD7F32;
+  box-shadow: 0 0 15px rgba(205, 127, 50, 0.4);
+  color: #CD7F32;
 }
 
-/*title pop with a glow and maybe a short subtitle like “Top Performers” */
-.card-title {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-  color: #e0eaff;
-  text-shadow: 0 0 10px rgba(0, 213, 255, 0.8);
-}
-
-.card-subtitle {
-  text-align: center;
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-  color: #9bbcff;
-  font-style: italic;
-}
-
-/*Glowing Animation for Card*/
-@keyframes pulse-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 8px rgba(0, 213, 255, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 15px rgba(0, 213, 255, 0.6);
-  }
-}
-
-.glow-card {
-  animation: pulse-glow 3s infinite;
-}
-
+/* Modal Styling */
 .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(4px);
-      justify-content: center;
-      align-items: center;
-    }
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+}
 
-    /* 🔹 Modal Box */
-    .modal-content {
-      background: rgba(10, 25, 47, 0.95);
-      padding: 2rem;
-      border-radius: 15px;
-      width: 400px;
-      box-shadow: 0 0 20px rgba(0,213,255,0.6);
-      color: #e0eaff;
-      text-align: center;
-      animation: fadeIn 0.3s ease;
-    }
+.modal-content {
+  background: rgba(10, 25, 47, 0.95);
+  padding: 2rem;
+  border-radius: 15px;
+  width: 400px;
+  box-shadow: 0 0 20px rgba(0,213,255,0.6);
+  color: #e0eaff;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
+.modal-content input {
+  width: 90%;
+  margin: 10px 0;
+  padding: 0.5rem;
+  background: transparent;
+  border: 1px solid rgba(0,213,255,0.6);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'Russo One', sans-serif;
+}
 
-    /* 🔹 Input fields */
-    .modal-content input {
-      width: 90%;
-      margin: 10px 0;
-      padding: 0.5rem;
-      background: transparent;
-      border: 1px solid rgba(0,213,255,0.6);
-      border-radius: 6px;
-      color: #fff;
-      font-size: 1rem;
-    }
+/* Button Styling */
+.modal-buttons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.modal-buttons button, .sort-btn, .edit-btn {
+  font-family: 'Russo One', sans-serif;
+}
+.modal-buttons button {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    /* 🔹 Buttons inside modal */
-    .modal-buttons {
-      margin-top: 1rem;
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
+.btn-edit { background: #32cd32; color: #fff; }
+.btn-edit:hover { background: #28a428; }
 
-    .modal-buttons button {
-      flex: 1;
-      padding: 0.6rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: 0.3s;
-    }
+.btn-delete { background: #ff4d4d; color: #fff; }
+.btn-delete:hover { background: #cc0000; }
 
-    .btn-add { background: #00bfff; color: #fff; }
-    .btn-add:hover { background: #008fcc; }
+.btn-close {
+  margin-top: 1rem;
+  background: transparent;
+  border: none;
+  color: #9bbcff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
 
-    .btn-edit { background: #32cd32; color: #fff; }
-    .btn-edit:hover { background: #28a428; }
+.edit-btn {
+  background: transparent;
+  border: 1px solid #00bfff;
+  color: #00bfff;
+  border-radius: 5px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.edit-btn:hover {
+  background: #00bfff;
+  color: #050a19;
+}
 
-    .btn-delete { background: #ff4d4d; color: #fff; }
-    .btn-delete:hover { background: #cc0000; }
+.sort-btn {
+  display: block;
+  margin: 2rem auto 0 auto;
+  padding: 0.8rem 2rem;
+  background: #ffcc00;
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 12px rgba(255, 204, 0, 0.7);
+}
+.sort-btn:hover {
+  background: #e6b800;
+}
 
-    .btn-close {
-      margin-top: 1rem;
-      background: transparent;
-      border: none;
-      color: #9bbcff;
-      cursor: pointer;
-      font-size: 0.9rem;
-      text-decoration: underline;
-    }
+/* Delete Confirmation Modal */
+.delete-modal .modal-content {
+  background: rgba(47, 0, 0, 0.95);
+  box-shadow: 0 0 20px rgba(255,0,0,0.8);
+}
+.delete-modal h3 {
+  color: #ff4d4d;
+}
 
-    /* Small "+" button inside leaderboard row */
-    .plus-btn {
-      background: #00bfff;
-      border: none;
-      border-radius: 50%;
-      padding: 0.3rem 0.6rem;
-      font-size: 1rem;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-      margin-left: 2rem;
-    }
-    .plus-btn:hover {
-      background: #008fcc;
-    }
-
-    /* 🔹 Sort Button (bottom middle) */
-    .sort-btn {
-      display: block;
-      margin: 2rem auto 0 auto;
-      padding: 0.8rem 2rem;
-      background: #ffcc00;
-      color: #000;
-      font-weight: 700;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 0 12px rgba(255, 204, 0, 0.7);
-    }
-    .sort-btn:hover {
-      background: #e6b800;
-    }
-
-    /* 🔹 Delete Confirmation Modal */
-    .delete-modal .modal-content {
-      background: rgba(47, 0, 0, 0.95);
-      box-shadow: 0 0 20px rgba(255,0,0,0.8);
-    }
-    .delete-modal h3 {
-      color: #ff4d4d;
-    }
+/*Remove Number Input Arrows */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
