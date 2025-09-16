@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,23 +17,11 @@
           <span class="serial-col">No.</span>
           <span class="team-col">Team Name</span>
           <span class="points-col">Points</span>
-          <!--<span class="actions-col">Actions</span>-->
+          <span class="actions-col">Actions</span>
         </div>
 
-        <!-- Loop through teams -->
-        <div th:each="team, iterStat : ${teams}" class="leaderboard-row"
-             th:classappend="${iterStat.index==0}? ' first' : 
-                             ${iterStat.index==1}? ' second' :
-                             ${iterStat.index==2}? ' third'">
-          <span class="serial-col" th:text="${iterStat.index + 1}">1</span>
-          <span class="team-col" th:text="${team.name}">Team Name</span>
-          <span class="points-col" th:text="${team.points}">0</span>
-          <span class="actions-col">
-            <button class="plus-btn" 
-                    th:attr="data-name=${team.name},data-points=${team.points},data-id=${team.id}"
-                    onclick="openModal(this)">+</button>
-          </span>
-        </div>
+        <!-- 🔹 Rows will be injected dynamically -->
+        <div id="leaderboardRows"></div>
       </div>
 
       <!-- Sort Button -->
@@ -50,7 +37,6 @@
       <input type="text" id="teamName" placeholder="Team Name">
       <input type="number" id="teamPoints" placeholder="Points">
       <div class="modal-buttons">
-        <button class="btn-add" onclick="addTeam()">Add</button>
         <button class="btn-edit" onclick="editTeam()">Edit</button>
         <button class="btn-delete" onclick="confirmDelete()">Delete</button>
       </div>
@@ -61,7 +47,7 @@
   <!-- 🔹 Delete Confirmation Modal -->
   <div id="deleteModal" class="modal delete-modal">
     <div class="modal-content">
-      <h3>Are you really want to Delete it?</h3>
+      <h3>Are you sure you want to delete this team?</h3>
       <div class="modal-buttons">
         <button class="btn-delete" onclick="deleteTeam()">Yes, Delete</button>
         <button class="btn-close" onclick="closeDeleteModal()">Cancel</button>
