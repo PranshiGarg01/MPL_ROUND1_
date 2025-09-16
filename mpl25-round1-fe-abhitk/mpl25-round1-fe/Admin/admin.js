@@ -10,7 +10,7 @@ let teams = [
   { id: 1, name: "Dragons", points: 45 },
   { id: 2, name: "Tigers", points: 38 },
   { id: 3, name: "Sharks", points: 52 },
-  { id: 4, name: "Wolves", points: 29 }
+  { id: 4, name: "Wolves", points: 29 },
 ];
 
 // 🔹 Simulate backend fetch
