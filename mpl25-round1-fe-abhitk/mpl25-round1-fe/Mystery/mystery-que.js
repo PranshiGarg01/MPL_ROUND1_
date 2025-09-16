@@ -30,8 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("points").textContent = mysteryData.pointsDeducted;
 
     // Update question text
-    document.getElementById("questionText").textContent =
-      mysteryData.mysteryQuestion;
+    document.getElementById("questionText").textContent = mysteryData.mysteryQuestion;
+
+    // Update code phrase
+    document.getElementById("codeText").textContent = mysteryData.mysteryCode;
   } else {
     console.error("No mystery data found in localStorage!");
   }
