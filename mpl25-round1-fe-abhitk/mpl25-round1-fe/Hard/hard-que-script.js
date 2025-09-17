@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   // --- Inject Data from Login ---
-  const mysteryData = JSON.parse(localStorage.getItem("mysteryData"));
+  const hardData = JSON.parse(localStorage.getItem("hardData"));
 
-  if (mysteryData) {
+  if (hardData) {
     // Update question text
-    document.getElementById("questionText").textContent = mysteryData.mysteryQuestion;
+    document.getElementById("questionText").textContent = hardData.question;
   } else {
-    console.error("No mystery data found in localStorage!");
+    console.error("No data found in localStorage!");
   }
 
   

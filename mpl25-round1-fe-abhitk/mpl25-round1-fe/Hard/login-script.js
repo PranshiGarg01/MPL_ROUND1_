@@ -32,9 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Success:", result);
 
       // Save both backend response + formData in localStorage
-      localStorage.setItem("mysteryData", JSON.stringify({
-        ...result,
-        pointsDeducted: formData.pointsDeducted
+      localStorage.setItem("hardData", JSON.stringify({
+        ...result
       }));
 
       //const result = await response.json();

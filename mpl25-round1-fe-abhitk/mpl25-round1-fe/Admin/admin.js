@@ -5,18 +5,18 @@ const teamPointsInput = document.getElementById("teamPoints");
 const teamIdInput = document.getElementById("teamId");
 const leaderboardRows = document.getElementById("leaderboardRows");
 
-// ⬇️ *** REPLACE THIS URL WITH YOUR ACTUAL API ENDPOINT *** ⬇️
-const API_BASE_URL = 'https://your-api-endpoint.com/teams'; // Using a placeholder URL
+// URL TO GET TEAMS
+const API_BASE_URL = '....../team'; // Using a placeholder URL
 
 // Global state for teams, populated by the fetch call.
-let teams = [];
+//let teams = [];
 
 // Fetches team data from the backend.
 async function loadTeams() {
   leaderboardRows.innerHTML = `<p style="text-align: center; padding: 2rem; font-style: italic; color: #9bbcff;">Loading teams...</p>`;
   
   try {
-    const response = await fetch(API_BASE_URL);
+    const response = await fetch(`${API_BASE_URL}/getAll`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -28,11 +28,11 @@ async function loadTeams() {
     leaderboardRows.innerHTML = `<p style="text-align: center; padding: 2rem; color: #ff4d4d;">Could not load from server. Using fallback data.</p>`;
     // Fallback to dummy data if the API fails, so the page is still usable for demonstration.
     teams = [
-      { id: 1, name: "Viper Vanguards", points: 98 },
-      { id: 4, name: "Gridiron Ghosts", points: 92 },
-      { id: 2, name: "Apex Accelerators", points: 85 },
-      { id: 3, name: "Nitro Knights", points: 77 },
-      { id: 5, name: "Circuit Sentinels", points: 68 },
+      { id: 1, teamName: "Viper Vanguards", points: 98 },
+      { id: 4, teamName: "Gridiron Ghosts", points: 92 },
+      { id: 2, nateamNamee: "Apex Accelerators", points: 85 },
+      { id: 3, teamName: "Nitro Knights", points: 77 },
+      { id: 5, teamName: "Circuit Sentinels", points: 68 },
     ];
   } finally {
     sortTeams(); // Sort and render the data regardless of source.
@@ -57,12 +57,12 @@ function renderLeaderboard() {
 
     row.innerHTML = `
       <span class="serial-col">${index + 1}</span>
-      <span class="team-col">${team.name}</span>
+      <span class="team-col">${team.teamName}</span>
       <span class="points-col">${team.points}</span>
       <span class="actions-col">
         <button class="edit-btn"
           data-id="${team.id}"
-          data-name="${team.name}"
+          data-name="${team.teamName}"
           data-points="${team.points}"
           onclick="openModal(this)">Edit</button>
       </span>
@@ -105,17 +105,17 @@ function closeDeleteModal() {
  * then reloads all teams from the server.
  */
 async function editTeam() {
-  const id = parseInt(teamIdInput.value);
+  const id = teamIdInput.value;
   const newName = teamNameInput.value.trim();
   const newPoints = parseInt(teamPointsInput.value) || 0;
 
   const payload = {
-    name: newName,
+    teamName: newName,
     points: newPoints,
   };
 
   try {
-    const response = await fetch(`${API_BASE_URL}/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/update/${id}`, {
       method: 'PUT', // Or 'PATCH'
       headers: {
         'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ async function deleteTeam() {
   const id = parseInt(teamIdInput.value);
 
   try {
-    const response = await fetch(`${API_BASE_URL}/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/remove/${id}`, {
       method: 'DELETE',
     });
 
