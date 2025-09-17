@@ -9,7 +9,7 @@ const leaderboardRows = document.getElementById("leaderboardRows");
 const API_BASE_URL = '....../team'; // Using a placeholder URL
 
 // Global state for teams, populated by the fetch call.
-//let teams = [];
+let teams = [];
 
 // Fetches team data from the backend.
 async function loadTeams() {
@@ -27,13 +27,13 @@ async function loadTeams() {
     console.error("Failed to fetch team data:", error);
     leaderboardRows.innerHTML = `<p style="text-align: center; padding: 2rem; color: #ff4d4d;">Could not load from server. Using fallback data.</p>`;
     // Fallback to dummy data if the API fails, so the page is still usable for demonstration.
-    teams = [
-      { id: 1, teamName: "Viper Vanguards", points: 98 },
-      { id: 4, teamName: "Gridiron Ghosts", points: 92 },
-      { id: 2, nateamNamee: "Apex Accelerators", points: 85 },
-      { id: 3, teamName: "Nitro Knights", points: 77 },
-      { id: 5, teamName: "Circuit Sentinels", points: 68 },
-    ];
+    // teams = [
+    //   { id: 1, teamName: "Viper Vanguards", points: 98 },
+    //   { id: 4, teamName: "Gridiron Ghosts", points: 92 },
+    //   { id: 2, nateamNamee: "Apex Accelerators", points: 85 },
+    //   { id: 3, teamName: "Nitro Knights", points: 77 },
+    //   { id: 5, teamName: "Circuit Sentinels", points: 68 },
+    // ];
   } finally {
     sortTeams(); // Sort and render the data regardless of source.
   }
