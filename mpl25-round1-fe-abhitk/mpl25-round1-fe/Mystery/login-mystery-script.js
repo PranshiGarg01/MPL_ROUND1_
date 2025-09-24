@@ -12,12 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // IMPORTANT: Replace this placeholder with your actual REST API URL
-    //const apiUrl = "https://localhost:8080/question/get";
+    const apiUrl = "http://10.28.63.196:8000";
 
     console.log("Sending data to API...", formData);
 
     try {
-      const response = await fetch("/mysteryQuestion/get", {
+      const response = await fetch(`${apiUrl}/mysteryQuestion/get`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,22 +25,24 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
       const result = await response.json();
       console.log("Success:", result);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${result.message}`);
+      }
 
       // Save both backend response + formData in localStorage
       localStorage.setItem("mysteryData", JSON.stringify({
         ...result,
+        //New!!
+        teamName: formData.teamName,
         pointsDeducted: formData.pointsDeducted
       }));
 
       //const result = await response.json();
       //console.log("Success:", result);
-      window.location.href = "/mysteryQuestion/get";
+      window.location.href = "mystery-que.html";
     } catch (error) {
       console.error("Error submitting form:", error);
     }

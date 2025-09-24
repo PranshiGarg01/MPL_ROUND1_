@@ -6,7 +6,7 @@ const teamIdInput = document.getElementById("teamId");
 const leaderboardRows = document.getElementById("leaderboardRows");
 
 // URL TO GET TEAMS
-const API_BASE_URL = '....../team'; // Using a placeholder URL
+const API_BASE_URL = "http://10.28.63.196:8000";// Using a placeholder URL
 
 // Global state for teams, populated by the fetch call.
 let teams = [];
@@ -16,7 +16,7 @@ async function loadTeams() {
   leaderboardRows.innerHTML = `<p style="text-align: center; padding: 2rem; font-style: italic; color: #9bbcff;">Loading teams...</p>`;
   
   try {
-    const response = await fetch(`${API_BASE_URL}/getAll`);
+    const response = await fetch(`${API_BASE_URL}/team/getAll`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -115,8 +115,8 @@ async function editTeam() {
   };
 
   try {
-    const response = await fetch(`${API_BASE_URL}/update/${id}`, {
-      method: 'PUT', // Or 'PATCH'
+    const response = await fetch(`${API_BASE_URL}/team/update/${id}`, {
+      method: 'PATCH', // Or 'PATCH'
       headers: {
         'Content-Type': 'application/json',
       },

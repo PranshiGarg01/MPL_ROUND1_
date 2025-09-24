@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Inject Data from Login ---
   const mysteryData = JSON.parse(localStorage.getItem("mysteryData"));
 
+  const apiUrl = "http://10.28.63.196:8000";
+
   if (mysteryData) {
     const difficultyEl = document.getElementById("difficulty");
 
@@ -12,14 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
     difficultyEl.textContent = mysteryData.difficulty;
 
     // Apply class based on difficulty
-    switch (mysteryData.difficulty.toLowerCase()) {
-      case "easy":
+    switch (mysteryData.difficulty) {
+      case "Easy":
         difficultyEl.classList.add("type1");
         break;
-      case "medium":
+      case "Medium":
         difficultyEl.classList.add("type2");
         break;
-      case "hard":
+      case "Hard":
         difficultyEl.classList.add("type3");
         break;
       default:
@@ -27,10 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Update points
-    document.getElementById("points").textContent = mysteryData.pointsDeducted;
+    //document.getElementById("points").textContent = mysteryData.pointsDeducted;
 
     // Update question text
-    document.getElementById("questionText").textContent = mysteryData.mysteryQuestion;
+    document.getElementById("questionText").textContent = mysteryData.question;
 
     // Update code phrase
     document.getElementById("codeText").textContent = mysteryData.mysteryCode;
@@ -101,9 +103,30 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Event Listeners ---
 
   // 1. Open code modal when "DONE" is clicked
-  queForm.addEventListener("submit", (e) => {
+  queForm.addEventListener("submit", async(e) => {
     e.preventDefault();
     openModal(codeModal);
+
+    try {
+      const formData = {
+        teamName: mysteryData.teamName,
+        mysteryCompletionStatus: "DONE"
+      };
+
+      const response = await fetch(`${apiUrl}/mysteryQuestion/result`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Error Sending details to backend:", error);
+    }
   });
 
   // 2. Close modals when close buttons are clicked

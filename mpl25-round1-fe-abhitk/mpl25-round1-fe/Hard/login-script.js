@@ -11,12 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // IMPORTANT: Replace this placeholder with your actual REST API URL
-    //const apiUrl = "https://localhost:8080/question/get";
+    const apiUrl = "http://10.28.63.196:8000";
 
     console.log("Sending data to API...", formData);
 
     try {
-      const response = await fetch("/question/get", {
+      const response = await fetch(`${apiUrl}/question/get`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }));
 
       //const result = await response.json();
-      //console.log("Success:", result);
+      console.log("Success:", result);
       window.location.href = "hard-que.html";
     } catch (error) {
       console.error("Error submitting form:", error);
